@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase</artifactId>
+        <version>0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>liquibase-integration-tests</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>system</scope>
+            <systemPath>/Users/Kevin/.m2/repository/org/liquibase/liquibase-core/0-SNAPSHOT-tests/liquibase-core-0-SNAPSHOT-tests.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-extension-testing</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>false</filtering>
+            </testResource>
+            <testResource>
+                <directory>src/test/filtered-resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+    </build>
+
+</project>

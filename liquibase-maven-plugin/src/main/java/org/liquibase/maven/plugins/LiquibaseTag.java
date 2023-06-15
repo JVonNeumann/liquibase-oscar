@@ -1,0 +1,44 @@
+package org.liquibase.maven.plugins;
+
+import liquibase.Liquibase;
+import liquibase.exception.LiquibaseException;
+import org.apache.maven.plugin.MojoFailureException;
+import org.liquibase.maven.property.PropertyElement;
+
+/**
+ * <p>Writes a Liquibase tag to the database.</p>
+ * 
+ * @author Peter Murray
+ * @goal tag
+ */
+public class LiquibaseTag extends AbstractLiquibaseMojo {
+
+  /**
+   * The text to write to the databasechangelog.
+   *
+   * @parameter property="liquibase.tag"
+   * @required
+   */
+  @PropertyElement
+  private String tag;
+
+  @Override
+  protected void checkRequiredParametersAreSpecified() throws MojoFailureException {
+    super.checkRequiredParametersAreSpecified();
+
+    if ((tag == null) || tag.trim().isEmpty()) {
+      throw new MojoFailureException("The tag must be specified.");
+    }
+  }
+
+  @Override
+  protected void printSettings(String indent) {
+    super.printSettings(indent);
+    getLog().info(indent + "tag: " + tag);
+  }
+
+  @Override
+  protected void performLiquibaseTask(Liquibase liquibase) throws LiquibaseException {
+    liquibase.tag(tag);
+  }
+}
